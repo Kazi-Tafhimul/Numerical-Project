@@ -1,24 +1,5 @@
-"""
-Linear System Solver - PyQt6 Enhanced
-=====================================
 
-Technologies Used:
-- GUI Library: PyQt6 - Modern cross-platform GUI framework
-- Visualization: Custom matrix animation engine with real-time step-by-step visualization
-- Data Handling: NumPy for efficient matrix operations and numerical computations
-- Threading: PyQt QThread for non-blocking UI during computations
-- Animation: Custom painting and animation system for matrix operations
-- File I/O: JSON support for saving/loading system configurations
 
-Features:
-- Interactive matrix input with dynamic sizing
-- Multiple solution methods (Gaussian Elimination, Matrix Inversion, Jacobi, Gauss-Seidel)
-- Real-time animated visualization of solution steps
-- Convergence plotting for iterative methods
-- Multi-threaded computation to keep UI responsive
-- File operations for saving and loading systems
-- Progress tracking and solution export capabilities
-"""
 
 import sys
 import numpy as np
@@ -581,15 +562,7 @@ class SolutionThread(QThread):
         self.should_stop = True
 
 class LinearSystemSolver(QMainWindow):
-    """
-    Main application class
-    
-    Technologies:
-    - PyQt6 for comprehensive GUI framework
-    - Custom widget integration for specialized visualization
-    - Event-driven architecture with signal-slot connections
-    - File I/O with JSON for system persistence
-    """
+
     
     def __init__(self):
         super().__init__()
@@ -604,14 +577,7 @@ class LinearSystemSolver(QMainWindow):
         self.generate_random_system()  # Start with a random system
         
     def init_ui(self):
-        """
-        Initialize the user interface
-        
-        Technologies:
-        - PyQt6 layout management system
-        - Splitter widgets for resizable panels
-        - Tab widgets for organized content presentation
-        """
+       
         self.setWindowTitle("Linear System Solver - PyQt6 Enhanced")
         self.setGeometry(100, 100, 1400, 900)
         
@@ -841,13 +807,7 @@ class LinearSystemSolver(QMainWindow):
             self.vector_entries.append(entry)
     
     def generate_random_system(self):
-        """
-        Generate a random linear system
-        
-        Technologies:
-        - NumPy random number generation
-        - Diagonal dominance for numerical stability
-        """
+       
         size = self.size_spinbox.value()
         
         # Update matrix size if needed
@@ -894,14 +854,7 @@ class LinearSystemSolver(QMainWindow):
             raise ValueError("Invalid input: Please enter numeric values only")
     
     def solve_system(self):
-        """
-        Solve the linear system using the selected method
-        
-        Technologies:
-        - Thread-based computation for non-blocking UI
-        - Signal-slot communication between threads
-        - Error handling and user feedback
-        """
+      
         try:
             # Get matrix data
             self.matrix_A, self.vector_b = self.get_matrix_data()
@@ -961,14 +914,7 @@ class LinearSystemSolver(QMainWindow):
         self.progress_bar.setValue(value)
     
     def process_solution_step(self, step_data):
-        """
-        Process a single solution step for visualization
-        
-        Technologies:
-        - Real-time data processing and visualization
-        - Animation control based on user preferences
-        - Step-by-step solution tracking
-        """
+       
         # Store step data
         self.iteration_data.append(step_data)
         
@@ -1000,14 +946,7 @@ class LinearSystemSolver(QMainWindow):
             self.convergence_widget.set_data(method=self.current_method)
     
     def solution_finished(self, solution):
-        """
-        Handle completed solution
-        
-        Technologies:
-        - Result formatting and display
-        - Solution verification and analysis
-        - Performance metrics calculation
-        """
+       
         self.solution = solution
         
         # Display solution
@@ -1071,14 +1010,7 @@ class LinearSystemSolver(QMainWindow):
         self.iteration_data = []
     
     def save_system(self):
-        """
-        Save current system to JSON file
-        
-        Technologies:
-        - JSON serialization for data persistence
-        - File dialog integration
-        - Error handling for file operations
-        """
+       
         try:
             A, b = self.get_matrix_data()
             
@@ -1206,14 +1138,7 @@ class LinearSystemSolver(QMainWindow):
 
 
 def main():
-    """
-    Main application entry point
-    
-    Technologies:
-    - PyQt6 application lifecycle management
-    - Exception handling for robust execution
-    - System integration and styling
-    """
+  
     app = QApplication(sys.argv)
     
     # Set application properties
@@ -1238,4 +1163,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
