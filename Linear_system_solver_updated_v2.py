@@ -15,14 +15,7 @@ from datetime import datetime
 import time
 
 class MatrixWidget(QWidget):
-    """
-    Custom widget for animated matrix visualization
-    
-    Technologies:
-    - PyQt6 custom painting for matrix visualization
-    - Real-time animation system for mathematical operations
-    - Color-coded cell highlighting for step tracking
-    """
+   
     
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -61,14 +54,7 @@ class MatrixWidget(QWidget):
         self.update()
         
     def paintEvent(self, event):
-        """
-        Custom paint event for matrix visualization
-        
-        Technologies:
-        - QPainter for custom graphics rendering
-        - Color interpolation for smooth animations
-        - Dynamic cell sizing and positioning
-        """
+       
         if self.matrix is None:
             return
             
@@ -124,15 +110,7 @@ class MatrixWidget(QWidget):
             painter.drawText(text_rect, Qt.AlignmentFlag.AlignCenter, self.operation_text)
 
 class ConvergenceWidget(QWidget):
-    """
-    Custom widget for convergence visualization and method analysis
     
-    Technologies:
-    - Custom plotting system for real-time convergence tracking
-    - Mathematical curve rendering for iterative methods
-    - Dynamic scaling and axis management
-    - Method-specific visualization
-    """
     
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -303,15 +281,7 @@ class ConvergenceWidget(QWidget):
         painter.drawText(x, y, text)
 
 class SolutionThread(QThread):
-    """
-    Thread for solving linear systems without blocking GUI
-    
-    Technologies:
-    - PyQt6 QThread for non-blocking computation
-    - NumPy for efficient matrix operations
-    - Signal-slot mechanism for thread communication
-    - Multiple numerical methods implementation
-    """
+   
     
     progress_updated = pyqtSignal(int)
     step_completed = pyqtSignal(dict)
@@ -347,14 +317,7 @@ class SolutionThread(QThread):
             self.error_occurred.emit(str(e))
     
     def gaussian_elimination(self):
-        """
-        Gaussian elimination with animation steps
         
-        Technologies:
-        - NumPy array operations for efficient matrix manipulation
-        - Step-by-step visualization data generation
-        - Pivot selection and row operations
-        """
         A = self.matrix_A.copy()
         b = self.vector_b.copy()
         n = len(b)
@@ -437,13 +400,7 @@ class SolutionThread(QThread):
         return x
     
     def matrix_inversion(self):
-        """
-        Matrix inversion method using NumPy
-        
-        Technologies:
-        - NumPy linalg module for matrix inversion
-        - Error handling for singular matrices
-        """
+      
         try:
             A_inv = np.linalg.inv(self.matrix_A)
             solution = A_inv @ self.vector_b
@@ -463,13 +420,7 @@ class SolutionThread(QThread):
             raise ValueError("Matrix is singular and cannot be inverted")
     
     def jacobi_method(self):
-        """
-        Jacobi iterative method
         
-        Technologies:
-        - NumPy for vector operations and norm calculations
-        - Convergence tracking and visualization
-        """
         A = self.matrix_A
         b = self.vector_b
         n = len(b)
@@ -511,13 +462,7 @@ class SolutionThread(QThread):
         return x
     
     def gauss_seidel_method(self):
-        """
-        Gauss-Seidel iterative method
-        
-        Technologies:
-        - NumPy for efficient vector operations
-        - Real-time convergence monitoring
-        """
+
         A = self.matrix_A
         b = self.vector_b
         n = len(b)
@@ -1165,3 +1110,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
